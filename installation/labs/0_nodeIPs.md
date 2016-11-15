@@ -1,5 +1,4 @@
 
-
 # External IP to connect to the cluster
 External elastic ip aws: 35.156.56.163
 
