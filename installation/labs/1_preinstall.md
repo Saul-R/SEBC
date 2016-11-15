@@ -1,27 +1,23 @@
 
-
-
-
-
 # Check vm.swappiness on all your nodes
 
 ```
 sudo sysctl vm.swappiness=1 # Disable
 sudo bash -c "echo 'vm.swappiness = 1' >> /etc/sysctl.conf" # Make permanent changes
-``
+```
 
-# Show the mount attributes of all volumes
-
+# Display the mount attributes of all volumes
 ```
 sudo fdisk /dev/xvdb #u/n/p/1/w
 sudo fdisk /dev/xvdc #u/n/p/1/w
 sudo mkfs.ext4 /dev/xvdb1
 sudo mkfs.ext4 /dev/xvdc1
-
 sudo partprobe
 sudo mkdir /data1 /data2
+```
 
-
+# Display mount points
+```
 [ec2-user@server02 ~]$ sudo mount
 /dev/xvda1 on / type ext4 (rw)
 proc on /proc type proc (rw)
@@ -34,15 +30,20 @@ none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
 [ec2-user@server02 ~]$
 ```
 
+# Display disks usage
+```
 #[ec2-user@server02 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/xvda1      9,8G  2,0G  7,3G  21% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
 /dev/xvdb1       40G   48M   38G   1% /data1
 /dev/xvdc1       40G   48M   38G   1% /data2
+```
 
 # Disable transparent hugepages
+```
 sudo echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag
+```
 
 # Report the network interface attributes
 ```
@@ -68,7 +69,6 @@ lo        Link encap:Local Loopback
 ```
 
 # Show forward and reverse host lookups using getent and nslookup
-
 ```
 [root@server02 ec2-user]# nslookup 35.156.79.146
 Server:		172.31.0.2
@@ -94,12 +94,12 @@ Address: 172.31.25.139
 ```
 
 # Verify the nscd service is running
+```
 sudo yum install nscd -y
 sudo chkconfig nscd on
 sudo service nscd start
 sudo service nscd status
 
-```
 [root@server02 ec2-user]#
 [root@server02 ec2-user]# chkconfig nscd on
 [root@server02 ec2-user]# service nscd start
@@ -109,18 +109,13 @@ Starting nscd:                                             [  OK  ]
 nscd (pid 23325) is running...
 ```
 
-
-
-
-
 # Verify the ntpd service is running
 
-
+```
 chkconfig ntpd on
 sudo service ntpd status
 sudo service ntpd start
 
-```
 [root@server02 ec2-user]# chkconfig ntpd on
 [root@server02 ec2-user]# sudo service ntpd status
 ntpd is stopped
@@ -132,6 +127,7 @@ Starting ntpd:                                             [  OK  ]
 
 
 # Checkreqs Script
+
 ```
 [ec2-user@server01 ~]$ cat checkreqs
 ### OS INFO
