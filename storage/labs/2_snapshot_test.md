@@ -22,7 +22,25 @@ hdfs dfsadmin -allowSnapshot /precious
 ```
 hdfs dfs -createSnapshot /precious sebc-hdfs-test
 ```
+# Delete the directory
+```
+hdfs dfs -rm -r /precious/
+```
 
+# Delete the ZIP file
+```
+hdfs dfs -rm /precious/master.zip
+```
+
+# Delete the directory
+```
+hdfs dfs -rm /precious/master.zip
+```
+
+# Restore the deleted file
+```
+hdfs dfs -cp  hdfs:///precious/.snapshot/sebc-hdfs-test/master.zip hdfs:///precious/.
+```
 
 # Results:
 ```
@@ -51,5 +69,18 @@ Found 1 items
 Allowing snaphot on /precious succeeded
 [hdfs@ip-172-31-25-139 ~]$ hdfs dfs -createSnapshot /precious sebc-hdfs-test
 Created snapshot /precious/.snapshot/sebc-hdfs-test
+
+[hdfs@ip-172-31-25-139 ~]$ hdfs dfs -rm -r /precious/
+rm: Failed to move to trash: hdfs://ip-172-31-25-141.eu-central-1.compute.internal:8020/precious: The directory /precious cannot be deleted since /precious is snapshottable and already has snapshots
+[hdfs@ip-172-31-25-139 ~]$ hdfs dfs -rm /precious/master.zip
+16/11/16 03:46:09 INFO fs.TrashPolicyDefault: Moved: 'hdfs://ip-172-31-25-141.eu-central-1.compute.internal:8020/precious/master.zip' to trash at: hdfs://ip-172-31-25-141.eu-central-1.compute.internal:8020/user/hdfs/.Trash/Current/precious/master.zip1479285969131
+[hdfs@ip-172-31-25-139 ~]$ hdfs dfs -ls /precious
+[hdfs@ip-172-31-25-139 ~]$ hdfs dfs -ls /precious/.snapshot/sebc-hdfs-test
+Found 1 items
+-rw-r--r--   3 hdfs supergroup     615610 2016-11-16 03:11 /precious/.snapshot/sebc-hdfs-test/master.zip
+[hdfs@ip-172-31-25-139 ~]$ hdfs dfs -cp  hdfs:///precious/.snapshot/sebc-hdfs-test/master.zip hdfs:///precious/.
+[hdfs@ip-172-31-25-139 ~]$ hdfs dfs -ls /precious
+Found 1 items
+-rw-r--r--   3 hdfs supergroup     615610 2016-11-16 03:49 /precious/master.zip
 
 ```
