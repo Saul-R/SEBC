@@ -32,11 +32,6 @@ hdfs dfs -rm -r /precious/
 hdfs dfs -rm /precious/master.zip
 ```
 
-# Delete the directory
-```
-hdfs dfs -rm /precious/master.zip
-```
-
 # Restore the deleted file
 ```
 hdfs dfs -cp  hdfs:///precious/.snapshot/sebc-hdfs-test/master.zip hdfs:///precious/.
