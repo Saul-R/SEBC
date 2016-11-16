@@ -1,4 +1,4 @@
-
+```
 [rgaleanog@ip-172-31-25-139 ~]$ hadoop distcp hftp://ip-172-31-25-141.eu-central-1.compute.internal:50070/user/rgaleanog/teragenDiscp hdfs://ec2-52-3-88-79.compute-1.amazonaws.com/tmp
 16/11/16 12:20:30 INFO tools.DistCp: Input Options: DistCpOptions{atomicCommit=false, syncFolder=false, deleteMissing=false, ignoreFailures=false, overwrite=false, skipCRC=false, blocking=true, numListstatusThreads=0, maxMaps=20, mapBandwidth=100, sslConfigurationFile='null', copyStrategy='uniformsize', preserveStatus=[], preserveRawXattrs=false, atomicWorkPath=null, logPath=null, sourceFileListing=null, sourcePaths=[hftp://ip-172-31-25-141.eu-central-1.compute.internal:50070/user/rgaleanog/teragenDiscp], targetPath=hdfs://ec2-52-3-88-79.compute-1.amazonaws.com/tmp, targetPathExists=true, filtersFile='null'}
 16/11/16 12:20:31 INFO client.RMProxy: Connecting to ResourceManager at ip-172-31-25-137.eu-central-1.compute.internal/172.31.25.137:8032
@@ -67,10 +67,10 @@
 		BYTESSKIPPED=0
 		COPY=2
 		SKIP=1
+```
 
 
-
-
+```
 [rgaleanog@ip-172-31-25-139 ~]$ hdfs fsck /user/rgaleanog/teragenDiscp -files -blocks -files -blocks
 Connecting to namenode via http://ip-172-31-25-141.eu-central-1.compute.internal:50070
 FSCK started by rgaleanog (auth:SIMPLE) from /172.31.25.139 for path /user/rgaleanog/teragenDiscp at Wed Nov 16 12:46:37 EST 2016
@@ -103,3 +103,5 @@ FSCK ended at Wed Nov 16 12:46:37 EST 2016 in 1 milliseconds
 
 
 The filesystem under path '/user/rgaleanog/teragenDiscp' is HEALTHY
+
+```
