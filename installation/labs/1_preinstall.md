@@ -8,10 +8,16 @@ sudo bash -c "echo 'vm.swappiness = 1' >> /etc/sysctl.conf" # Make permanent cha
 
 # Display the mount attributes of all volumes
 ```
+echo -e "o\nn\np\n1\n\n\n\nw" | sudo fdisk /dev/xvdb 
+echo -e "o\nn\np\n1\n\n\n\nw" | sudo fdisk /dev/xvdc 
+echo -e "o\nn\np\n1\n\n+15GB\n\nw" |sudo fdisk /dev/xvdf
+echo -e "o\nn\np\n2\n\n\n\nw" |sudo fdisk /dev/xvdf
 sudo fdisk /dev/xvdb #u/n/p/1/w
 sudo fdisk /dev/xvdc #u/n/p/1/w
+sudo fdisk /dev/xvdf #u/n/p/1/w
 sudo mkfs.ext4 /dev/xvdb1
 sudo mkfs.ext4 /dev/xvdc1
+sudo mkfs.ext4 /dev/xvdf1
 sudo partprobe
 sudo mkdir /data1 /data2
 ```

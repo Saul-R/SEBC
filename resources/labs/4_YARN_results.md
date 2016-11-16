@@ -1,45 +1,18 @@
+
+
+
+# YARN slow Jobs
 ```
-[rgaleanog@ip-172-31-25-139 ~]$ ./YARNtest.sh 
-Testing loop started on Wed Nov 16 05:15:59 EST 2016
-409
-409
+ hadoop jar hadoop-examples.jar teragen  -Dmapreduce.job.maps=8 -Dmapreduce.map.memory.mb=512 -Dmapreduce.map.java.opts.max.heap=409 100000 results/tg-10GB-8-8-512 elapsed: 20
+hadoop jar hadoop-examples.jar terasort -Dmapreduce.job.maps=8 -Dmapreduce.job.reduces=8 -Dmapreduce.map.memory.mb=512 -Dmapreduce.map.java.opts.max.heap=409 -Dmapreduce.reduce.memory.mb=512 results/tg-10GB-8-8-512 -Dmapreduce.reduce.java.opts.max.heap=409 elapsed: 33
+ hadoop jar hadoop-examples.jar teragen  -Dmapreduce.job.maps=8 -Dmapreduce.map.memory.mb=1024 -Dmapreduce.map.java.opts.max.heap=819 100000 results/tg-10GB-8-8-1024 elapsed: 20
+hadoop jar hadoop-examples.jar terasort -Dmapreduce.job.maps=8 -Dmapreduce.job.reduces=8 -Dmapreduce.map.memory.mb=1024 -Dmapreduce.map.java.opts.max.heap=819 -Dmapreduce.reduce.memory.mb=1024 results/tg-10GB-8-8-1024 -Dmapreduce.reduce.java.opts.max.heap=819 elapsed: 31
+```
 
-real	0m14.806s
-user	0m5.288s
-sys	0m0.293s
-
-real	0m23.392s
-user	0m6.695s
-sys	0m0.286s
-Deleted /user/rgaleanog/results/tg-10GB-2-2-512
-
-real	0m2.436s
-user	0m3.281s
-sys	0m0.189s
-Deleted /user/rgaleanog/results/ts-10GB-2-2-512
-
-real	0m2.389s
-user	0m3.285s
-sys	0m0.170s
-819
-819
-
-real	0m15.896s
-user	0m5.940s
-sys	0m0.282s
-
-real	0m22.441s
-user	0m6.552s
-sys	0m0.266s
-Deleted /user/rgaleanog/results/tg-10GB-2-2-1024
-
-real	0m2.542s
-user	0m3.918s
-sys	0m0.183s
-Deleted /user/rgaleanog/results/ts-10GB-2-2-1024
-
-real	0m2.341s
-user	0m3.662s
-sys	0m0.184s
-Testing loop ended on Wed Nov 16 05:17:25 EST 2016
+# YARN fast Jobs
+```
+ hadoop jar hadoop-examples.jar teragen  -Dmapreduce.job.maps=2 -Dmapreduce.map.memory.mb=512 -Dmapreduce.map.java.opts.max.heap=409 100000 results/tg-10GB-2-2-512 elapsed: 15
+hadoop jar hadoop-examples.jar terasort -Dmapreduce.job.maps=2 -Dmapreduce.job.reduces=2 -Dmapreduce.map.memory.mb=512 -Dmapreduce.map.java.opts.max.heap=409 -Dmapreduce.reduce.memory.mb=512 results/tg-10GB-2-2-512 -Dmapreduce.reduce.java.opts.max.heap=409 elapsed: 22
+ hadoop jar hadoop-examples.jar teragen  -Dmapreduce.job.maps=2 -Dmapreduce.map.memory.mb=1024 -Dmapreduce.map.java.opts.max.heap=819 100000 results/tg-10GB-2-2-1024 elapsed: 16
+hadoop jar hadoop-examples.jar terasort -Dmapreduce.job.maps=2 -Dmapreduce.job.reduces=2 -Dmapreduce.map.memory.mb=1024 -Dmapreduce.map.java.opts.max.heap=819 -Dmapreduce.reduce.memory.mb=1024 results/tg-10GB-2-2-1024 -Dmapreduce.reduce.java.opts.max.heap=819 elapsed: 23
 ```
