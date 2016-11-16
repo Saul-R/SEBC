@@ -1,6 +1,8 @@
 # Create a home HDFS directory for this user as well
 ```
 hdfs dfs mkdir /user/rgaleanog
+```
+
 
 # Teragen command
 ```
@@ -8,7 +10,7 @@ time yarn jar /opt/cloudera/parcels/CDH/jars/hadoop-examples.jar teragen -Ddfs.b
 ```
 
 # Terasort command
-``
+```
 time yarn jar /opt/cloudera/parcels/CDH/jars/hadoop-examples.jar terasort teragen-output terasort-output
 ```
 
