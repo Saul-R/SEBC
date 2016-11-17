@@ -201,8 +201,10 @@ INFO  : OK
 | web_logs   |
 +------------+--+
 4 rows selected (0,332 seconds)
+```
 
-
+# kinit as ferdinand, then login to beeline
+```
 [ec2-user@ip-172-31-25-141 ~]$ kinit ferdinand
 Password for ferdinand@RGALEANOG.FNG:
 [ec2-user@ip-172-31-25-141 ~]$ beeline
