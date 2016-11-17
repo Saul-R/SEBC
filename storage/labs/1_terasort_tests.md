@@ -14,7 +14,7 @@ time yarn jar /opt/cloudera/parcels/CDH/jars/hadoop-examples.jar teragen -Ddfs.b
 time yarn jar /opt/cloudera/parcels/CDH/jars/hadoop-examples.jar terasort teragen-output terasort-output
 ```
 
-# Teragen command
+# Teragen results
 ```
 [rgaleanog@ip-172-31-25-139 ~]$ time yarn jar /opt/cloudera/parcels/CDH/jars/hadoop-examples.jar teragen -Ddfs.block.size=33554432 -Dmapred.map.tasks=4 100000000 teragen-output
 16/11/16 02:38:37 INFO client.RMProxy: Connecting to ResourceManager at ip-172-31-25-137.eu-central-1.compute.internal/172.31.25.137:8032
