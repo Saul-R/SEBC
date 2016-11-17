@@ -8,4 +8,4 @@ Default principal: rgaleanog@RGALEANOG.FNG
 Valid starting     Expires            Service principal
 11/16/16 17:17:26  11/17/16 17:17:26  krbtgt/RGALEANOG.FNG@RGALEANOG.FNG
 	renew until 11/23/16 17:17:26
-``
+```
