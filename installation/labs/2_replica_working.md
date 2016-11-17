@@ -148,13 +148,12 @@ sql_mode=STRICT_ALL_TABLES
 # Configure mysql on both servers:
 Start the mysqld service.
 Use /usr/bin/mysql_secure_installation to:
-a. Set password protection for the server
-
-b. Revoke permissions for anonymous users
-c. Permit remote privileged login
-d. Remove test databases
-e. Refresh privileges in memory
-f. Refreshes the mysqld service
+- Set password protection for the server
+- Revoke permissions for anonymous users
+- Permit remote privileged login
+- Remove test databases
+- Refresh privileges in memory
+- Refreshes the mysqld service
 
 # Configure Master/Slave behaviour:
 ```
