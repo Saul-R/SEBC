@@ -2,7 +2,7 @@
 
 # Check status
 ```
-[ec2-user@ip-172-31-25-141 ~]$ curl --insecure -u rgaleanog:cloudera "http://172.31.25.141:7180/api/v12/clusters/rgaleanog/services/hive/"
+[ec2-user@ip-172-31-25-141 ~]$ curl -X GET -u rgaleanog:cloudera "http://172.31.25.141:7180/api/v12/clusters/rgaleanog/services/hive/"
 {
   "name" : "hive",
   "type" : "HIVE",
