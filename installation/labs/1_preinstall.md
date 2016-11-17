@@ -24,7 +24,7 @@ sudo mkdir /data1 /data2
 
 # Display mount points
 ```
-[ec2-user@server02 ~]$ sudo mount
+[ec2-user@ip-172-31-25-137 ~]$ sudo mount
 /dev/xvda1 on / type ext4 (rw)
 proc on /proc type proc (rw)
 sysfs on /sys type sysfs (rw)
@@ -33,12 +33,12 @@ tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
 none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
 /dev/xvdb1 on /data1 type ext4 (rw)
 /dev/xvdc1 on /data2 type ext4 (rw)
-[ec2-user@server02 ~]$
+[ec2-user@ip-172-31-25-137 ~]$
 ```
 
 # Display disks usage
 ```
-#[ec2-user@server02 ~]$ df -h
+#[ec2-user@ip-172-31-25-137 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/xvda1      9,8G  2,0G  7,3G  21% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
@@ -53,7 +53,7 @@ sudo echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag
 
 # Report the network interface attributes
 ```
-[root@server02 ec2-user]# ifconfig
+[root@ip-172-31-25-137 ec2-user]# ifconfig
 eth0      Link encap:Ethernet  HWaddr 02:71:BC:42:30:17
           inet addr:172.31.25.137  Bcast:172.31.31.255  Mask:255.255.240.0
           inet6 addr: fe80::71:bcff:fe42:3017/64 Scope:Link
@@ -76,7 +76,7 @@ lo        Link encap:Local Loopback
 
 # Show forward and reverse host lookups using getent and nslookup
 ```
-[root@server02 ec2-user]# nslookup 35.156.79.146
+[root@ip-172-31-25-137 ec2-user]# nslookup 35.156.79.146
 Server:		172.31.0.2
 Address:	172.31.0.2#53
 
@@ -85,7 +85,7 @@ Non-authoritative answer:
 
 Authoritative answers can be found from:
 
-[root@server02 ec2-user]# nslookup ec2-35-156-76-146.eu-central-1.compute.amazonaws.com
+[root@ip-172-31-25-137 ec2-user]# nslookup ec2-35-156-76-146.eu-central-1.compute.amazonaws.com
 Server:		172.31.0.2
 Address:	172.31.0.2#53
 
@@ -93,9 +93,9 @@ Non-authoritative answer:
 Name:	ec2-35-156-76-146.eu-central-1.compute.amazonaws.com
 Address: 172.31.25.139
 
-[root@server02 ec2-user]# getent hosts 35.156.79.146
+[root@ip-172-31-25-137 ec2-user]# getent hosts 35.156.79.146
 35.156.79.146   ec2-35-156-79-146.eu-central-1.compute.amazonaws.com
-[root@server02 ec2-user]# getent hosts ec2-35-156-79-146.eu-central-1.compute.amazonaws.com
+[root@ip-172-31-25-137 ec2-user]# getent hosts ec2-35-156-79-146.eu-central-1.compute.amazonaws.com
 35.156.79.146   ec2-35-156-79-146.eu-central-1.compute.amazonaws.com
 ```
 
@@ -106,12 +106,12 @@ sudo chkconfig nscd on
 sudo service nscd start
 sudo service nscd status
 
-[root@server02 ec2-user]#
-[root@server02 ec2-user]# chkconfig nscd on
-[root@server02 ec2-user]# service nscd start
+[root@ip-172-31-25-137 ec2-user]#
+[root@ip-172-31-25-137 ec2-user]# chkconfig nscd on
+[root@ip-172-31-25-137 ec2-user]# service nscd start
 Starting nscd:                                             [  OK  ]
-[root@server02 ec2-user]# sudo service nscd statu
-[root@server02 ec2-user]# sudo service nscd status
+[root@ip-172-31-25-137 ec2-user]# sudo service nscd statu
+[root@ip-172-31-25-137 ec2-user]# sudo service nscd status
 nscd (pid 23325) is running...
 ```
 
@@ -122,12 +122,12 @@ chkconfig ntpd on
 sudo service ntpd status
 sudo service ntpd start
 
-[root@server02 ec2-user]# chkconfig ntpd on
-[root@server02 ec2-user]# sudo service ntpd status
+[root@ip-172-31-25-137 ec2-user]# chkconfig ntpd on
+[root@ip-172-31-25-137 ec2-user]# sudo service ntpd status
 ntpd is stopped
-[root@server02 ec2-user]# sudo service ntpd start
+[root@ip-172-31-25-137 ec2-user]# sudo service ntpd start
 Starting ntpd:                                             [  OK  ]
-[root@server02 ec2-user]#
+[root@ip-172-31-25-137 ec2-user]#
 ```
 
 
@@ -135,79 +135,78 @@ Starting ntpd:                                             [  OK  ]
 # Checkreqs Script
 
 ```
-[ec2-user@server01 ~]$ cat checkreqs
-### OS INFO
+[### OS INFO
 //--- uname -a
-server01
-Linux server01 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
-server02
-Linux server02 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
-server03
-Linux server03 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
-server04
-Linux server04 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
-server05
-Linux server05 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
+ip-172-31-25-141.eu-central-1.compute.internal
+Linux ip-172-31-25-141.eu-central-1.compute.internal 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
+ip-172-31-25-137.eu-central-1.compute.internal
+Linux ip-172-31-25-137.eu-central-1.compute.internal 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
+ip-172-31-25-138.eu-central-1.compute.internal
+Linux ip-172-31-25-138.eu-central-1.compute.internal 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
+ip-172-31-25-139.eu-central-1.compute.internal
+Linux ip-172-31-25-139.eu-central-1.compute.internal 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
+ip-172-31-25-140.eu-central-1.compute.internal
+Linux ip-172-31-25-140.eu-central-1.compute.internal 2.6.32-573.el6.x86_64 #1 SMP Wed Jul 1 18:23:37 EDT 2015 x86_64 x86_64 x86_64 GNU/Linux
 
 //--- cat /etc/redhat-release
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 Red Hat Enterprise Linux Server release 6.7 (Santiago)
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 Red Hat Enterprise Linux Server release 6.7 (Santiago)
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 Red Hat Enterprise Linux Server release 6.7 (Santiago)
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 Red Hat Enterprise Linux Server release 6.7 (Santiago)
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 Red Hat Enterprise Linux Server release 6.7 (Santiago)
 
 ### NETWORK
 //--- dmesg | egrep NIC
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 Netfront and the Xen platform PCI driver have been compiled for this kernel: unplug emulated NICs.
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 Netfront and the Xen platform PCI driver have been compiled for this kernel: unplug emulated NICs.
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 Netfront and the Xen platform PCI driver have been compiled for this kernel: unplug emulated NICs.
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 Netfront and the Xen platform PCI driver have been compiled for this kernel: unplug emulated NICs.
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 Netfront and the Xen platform PCI driver have been compiled for this kernel: unplug emulated NICs.
 
 //--- egrep HOSTNAME /etc/sysconfig/network
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 HOSTNAME=ip-172-31-25-141.eu-central-1.compute.internal
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 HOSTNAME=ip-172-31-25-137.eu-central-1.compute.internal
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 HOSTNAME=ip-172-31-25-138.eu-central-1.compute.internal
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 HOSTNAME=ip-172-31-25-139.eu-central-1.compute.internal
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 HOSTNAME=ip-172-31-25-140.eu-central-1.compute.internal
 
 //--- cat /etc/sysconfig/network-scripts/ifcfg-eth* | egrep "^DEVICE|BOOTPROTO|ONBOOT|NETMASK|NETWORK|IPADDR|PEERDNS"
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 DEVICE="eth0"
 BOOTPROTO="dhcp"
 ONBOOT="yes"
 PEERDNS="yes"
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 DEVICE="eth0"
 BOOTPROTO="dhcp"
 ONBOOT="yes"
 PEERDNS="yes"
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 DEVICE="eth0"
 BOOTPROTO="dhcp"
 ONBOOT="yes"
 PEERDNS="yes"
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 DEVICE="eth0"
 BOOTPROTO="dhcp"
 ONBOOT="yes"
 PEERDNS="yes"
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 DEVICE="eth0"
 BOOTPROTO="dhcp"
 ONBOOT="yes"
@@ -215,304 +214,344 @@ PEERDNS="yes"
 
 ### DISK INFO
 //--- lsblk
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 xvda    202:0    0  10G  0 disk
 └─xvda1 202:1    0  10G  0 part /
 xvdb    202:16   0  40G  0 disk
-└─xvdb1 202:17   0  40G  0 part /data2
+└─xvdb1 202:17   0  40G  0 part /opt
 xvdc    202:32   0  40G  0 disk
 └─xvdc1 202:33   0  40G  0 part /data1
-server02
+xvdf    202:80   0  30G  0 disk
+├─xvdf1 202:81   0  14G  0 part /var/log
+└─xvdf2 202:82   0  16G  0 part /var/lib
+ip-172-31-25-137.eu-central-1.compute.internal
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 xvda    202:0    0  10G  0 disk
 └─xvda1 202:1    0  10G  0 part /
 xvdb    202:16   0  40G  0 disk
 └─xvdb1 202:17   0  40G  0 part /data1
 xvdc    202:32   0  40G  0 disk
-└─xvdc1 202:33   0  40G  0 part /data2
-server03
+└─xvdc1 202:33   0  40G  0 part /opt
+xvdf    202:80   0  30G  0 disk
+├─xvdf1 202:81   0  14G  0 part /var/log
+└─xvdf2 202:82   0  16G  0 part /var/lib
+ip-172-31-25-138.eu-central-1.compute.internal
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 xvda    202:0    0  10G  0 disk
 └─xvda1 202:1    0  10G  0 part /
 xvdb    202:16   0  40G  0 disk
 └─xvdb1 202:17   0  40G  0 part /data1
 xvdc    202:32   0  40G  0 disk
-└─xvdc1 202:33   0  40G  0 part /data2
-server04
+└─xvdc1 202:33   0  40G  0 part /opt
+xvdf    202:80   0  30G  0 disk
+├─xvdf1 202:81   0  14G  0 part /var/log
+└─xvdf2 202:82   0  16G  0 part /var/lib
+ip-172-31-25-139.eu-central-1.compute.internal
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 xvda    202:0    0  10G  0 disk
 └─xvda1 202:1    0  10G  0 part /
 xvdb    202:16   0  40G  0 disk
 └─xvdb1 202:17   0  40G  0 part /data1
 xvdc    202:32   0  40G  0 disk
-└─xvdc1 202:33   0  40G  0 part /data2
-server05
+└─xvdc1 202:33   0  40G  0 part /opt
+xvdf    202:80   0  30G  0 disk
+├─xvdf1 202:81   0  14G  0 part /var/log
+└─xvdf2 202:82   0  16G  0 part /var/lib
+ip-172-31-25-140.eu-central-1.compute.internal
 NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 xvda    202:0    0  10G  0 disk
 └─xvda1 202:1    0  10G  0 part /
 xvdb    202:16   0  40G  0 disk
 └─xvdb1 202:17   0  40G  0 part /data1
 xvdc    202:32   0  40G  0 disk
-└─xvdc1 202:33   0  40G  0 part /data2
+└─xvdc1 202:33   0  40G  0 part /opt
+xvdf    202:80   0  30G  0 disk
+├─xvdf1 202:81   0  14G  0 part /var/log
+└─xvdf2 202:82   0  16G  0 part /var/lib
 
 //--- egrep "^/dev/*" /proc/mounts
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 /dev/xvda1 / ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-/dev/xvdb1 /data2 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
 /dev/xvdc1 /data1 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-server02
+/dev/xvdb1 /opt ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf1 /var/log ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf2 /var/lib ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+ip-172-31-25-137.eu-central-1.compute.internal
 /dev/xvda1 / ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
 /dev/xvdb1 /data1 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-/dev/xvdc1 /data2 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-server03
+/dev/xvdc1 /opt ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf1 /var/log ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf2 /var/lib ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+ip-172-31-25-138.eu-central-1.compute.internal
 /dev/xvda1 / ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
 /dev/xvdb1 /data1 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-/dev/xvdc1 /data2 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-server04
+/dev/xvdc1 /opt ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf2 /var/lib ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf1 /var/log ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+ip-172-31-25-139.eu-central-1.compute.internal
 /dev/xvda1 / ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
 /dev/xvdb1 /data1 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-/dev/xvdc1 /data2 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-server05
+/dev/xvdc1 /opt ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf1 /var/log ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf2 /var/lib ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+ip-172-31-25-140.eu-central-1.compute.internal
 /dev/xvda1 / ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
 /dev/xvdb1 /data1 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
-/dev/xvdc1 /data2 ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdc1 /opt ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf1 /var/log ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+/dev/xvdf2 /var/lib ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
 
 //--- df -h
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  2,1G  7,2G  23% /
+/dev/xvda1      9,8G  6,0G  3,3G  65% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb1       40G   48M   38G   1% /data2
-/dev/xvdc1       40G   48M   38G   1% /data1
-server02
+/dev/xvdc1       40G  855M   37G   3% /data1
+/dev/xvdb1       40G  4,8G   33G  13% /opt
+cm_processes    7,3G   46M  7,3G   1% /var/run/cloudera-scm-agent/process
+/dev/xvdf1       14G  160M   13G   2% /var/log
+/dev/xvdf2       16G  4,0G   11G  27% /var/lib
+ip-172-31-25-137.eu-central-1.compute.internal
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  2,1G  7,2G  23% /
+/dev/xvda1      9,8G  5,5G  3,8G  59% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb1       40G   48M   38G   1% /data1
-/dev/xvdc1       40G   48M   38G   1% /data2
-server03
+/dev/xvdb1       40G   71M   38G   1% /data1
+/dev/xvdc1       40G  3,5G   34G  10% /opt
+cm_processes    7,3G   22M  7,3G   1% /var/run/cloudera-scm-agent/process
+/dev/xvdf1       14G   69M   13G   1% /var/log
+/dev/xvdf2       16G  1,5G   14G  10% /var/lib
+ip-172-31-25-138.eu-central-1.compute.internal
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  2,1G  7,2G  23% /
+/dev/xvda1      9,8G  3,9G  5,5G  42% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb1       40G   48M   38G   1% /data1
-/dev/xvdc1       40G   48M   38G   1% /data2
-server04
+/dev/xvdb1       40G   14G   24G  38% /data1
+/dev/xvdc1       40G  3,5G   34G  10% /opt
+cm_processes    7,3G  3,7M  7,3G   1% /var/run/cloudera-scm-agent/process
+/dev/xvdf2       16G  111M   15G   1% /var/lib
+/dev/xvdf1       14G   58M   13G   1% /var/log
+ip-172-31-25-139.eu-central-1.compute.internal
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  2,1G  7,2G  23% /
+/dev/xvda1      9,8G  3,9G  5,4G  42% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb1       40G   48M   38G   1% /data1
-/dev/xvdc1       40G   48M   38G   1% /data2
-server05
+/dev/xvdb1       40G   16G   22G  42% /data1
+/dev/xvdc1       40G  3,5G   34G  10% /opt
+cm_processes    7,3G  3,6M  7,3G   1% /var/run/cloudera-scm-agent/process
+/dev/xvdf1       14G   62M   13G   1% /var/log
+/dev/xvdf2       16G  109M   15G   1% /var/lib
+ip-172-31-25-140.eu-central-1.compute.internal
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  2,1G  7,2G  23% /
+/dev/xvda1      9,8G  3,9G  5,5G  42% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb1       40G   48M   38G   1% /data1
-/dev/xvdc1       40G   48M   38G   1% /data2
+/dev/xvdb1       40G   17G   21G  46% /data1
+/dev/xvdc1       40G  3,5G   34G  10% /opt
+cm_processes    7,3G  3,7M  7,3G   1% /var/run/cloudera-scm-agent/process
+/dev/xvdf1       14G   61M   13G   1% /var/log
+/dev/xvdf2       16G  107M   15G   1% /var/lib
 
 ### CPU INFO
 //--- nproc
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 4
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 4
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 4
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 4
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 4
 
 //--- egrep "^model name\s+:" /proc/cpuinfo
-server01
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-server02
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-server03
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-server04
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-server05
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
-model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+ip-172-31-25-141.eu-central-1.compute.internal
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+ip-172-31-25-137.eu-central-1.compute.internal
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+ip-172-31-25-138.eu-central-1.compute.internal
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+ip-172-31-25-139.eu-central-1.compute.internal
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+ip-172-31-25-140.eu-central-1.compute.internal
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+model name     : Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
 
 ### MEM INFO
 //--- egrep "^MemTotal|SwapTotal|HugePages_Total" /proc/meminfo
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 MemTotal:       15297616 kB
 SwapTotal:             0 kB
 HugePages_Total:       0
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 MemTotal:       15297616 kB
 SwapTotal:             0 kB
 HugePages_Total:       0
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 MemTotal:       15297616 kB
 SwapTotal:             0 kB
 HugePages_Total:       0
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 MemTotal:       15297616 kB
 SwapTotal:             0 kB
 HugePages_Total:       0
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 MemTotal:       15297616 kB
 SwapTotal:             0 kB
 HugePages_Total:       0
 
 ### SELINUX CHECK
 //--- egrep "^SELINUX" /etc/sysconfig/selinux
-server01
-SELINUX=enforcing
+ip-172-31-25-141.eu-central-1.compute.internal
+SELINUX=disabled
 SELINUXTYPE=targeted
-server02
-SELINUX=enforcing
+ip-172-31-25-137.eu-central-1.compute.internal
+SELINUX=disabled
 SELINUXTYPE=targeted
-server03
-SELINUX=enforcing
+ip-172-31-25-138.eu-central-1.compute.internal
+SELINUX=disabled
 SELINUXTYPE=targeted
-server04
-SELINUX=enforcing
+ip-172-31-25-139.eu-central-1.compute.internal
+SELINUX=disabled
 SELINUXTYPE=targeted
-server05
-SELINUX=enforcing
+ip-172-31-25-140.eu-central-1.compute.internal
+SELINUX=disabled
 SELINUXTYPE=targeted
 
 ### SSHD SERVICE
 //--- chkconfig --list sshd
-server01
-sshd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server02
-sshd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server03
-sshd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server04
-sshd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server05
-sshd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
+ip-172-31-25-141.eu-central-1.compute.internal
+sshd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-137.eu-central-1.compute.internal
+sshd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-138.eu-central-1.compute.internal
+sshd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-139.eu-central-1.compute.internal
+sshd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-140.eu-central-1.compute.internal
+sshd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
 
 ### USER LIMITS
 //--- egrep "^[^# ].+" /etc/security/limits.conf
-server01
-server02
-server03
-server04
-server05
+ip-172-31-25-141.eu-central-1.compute.internal
+ip-172-31-25-137.eu-central-1.compute.internal
+ip-172-31-25-138.eu-central-1.compute.internal
+ip-172-31-25-139.eu-central-1.compute.internal
+ip-172-31-25-140.eu-central-1.compute.internal
 
 ### NTP SERVICE
 //--- service ntpd status
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 ntpd (pid  2440) is running...
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 ntpd (pid  23435) is running...
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 ntpd (pid  2445) is running...
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 ntpd (pid  2400) is running...
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 ntpd (pid  2418) is running...
 
 //--- chkconfig --list ntpd
-server01
-ntpd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server02
-ntpd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server03
-ntpd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server04
-ntpd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server05
-ntpd           	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
+ip-172-31-25-141.eu-central-1.compute.internal
+ntpd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-137.eu-central-1.compute.internal
+ntpd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-138.eu-central-1.compute.internal
+ntpd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-139.eu-central-1.compute.internal
+ntpd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-140.eu-central-1.compute.internal
+ntpd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
 
 //--- date
-server01
-lun nov 14 11:48:42 EST 2016
-server02
-lun nov 14 11:48:43 EST 2016
-server03
-lun nov 14 11:48:43 EST 2016
-server04
-lun nov 14 11:48:43 EST 2016
-server05
-lun nov 14 11:48:44 EST 2016
+ip-172-31-25-141.eu-central-1.compute.internal
+jue nov 17 00:30:18 EST 2016
+ip-172-31-25-137.eu-central-1.compute.internal
+jue nov 17 00:30:18 EST 2016
+ip-172-31-25-138.eu-central-1.compute.internal
+jue nov 17 00:30:19 EST 2016
+ip-172-31-25-139.eu-central-1.compute.internal
+jue nov 17 00:30:19 EST 2016
+ip-172-31-25-140.eu-central-1.compute.internal
+jue nov 17 00:30:19 EST 2016
 
 //--- ntpq -p
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
      remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
-+spacys.de       131.188.3.222    2 u   46   64  377    5.498  -16.717  18.000
-+jitter.tickadj. 127.67.113.92    2 u   29   64  377  176.275   -6.943  13.369
--ntp1.m-online.n 212.18.1.106     2 u   46   64  377    7.934    8.555  14.646
-*h1939797.strato 130.149.17.21    2 u   24   64  377   15.577   -9.387   7.542
-server02
+*spacys.de       131.188.3.222    2 u  148 1024  377    5.465   -0.239   0.350
+-jitter.tickadj. 127.67.113.92    2 u  130 1024  377  169.712    2.321   0.284
++ntp1.m-online.n 212.18.1.106     2 u  311 1024  377    8.286    0.325   0.352
++h1939797.strato 131.188.3.223    2 u  571 1024  377   13.710   -0.198   2.886
+ip-172-31-25-137.eu-central-1.compute.internal
      remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
-+2.202.196.104.a 128.138.141.172  2 u   51   64  377   99.311  -30.923  21.195
-+a03.alphasrv.ne 192.53.103.104   2 u   43   64  377    5.572  -22.381  14.052
--ntp.wdc1.us.lea 199.102.46.72    2 u   33   64  377  103.802   11.462  12.025
-*muenchen.klaus- 131.211.8.244    2 u   37   64  377    7.581   -5.809  12.528
-server03
++2.202.196.104.b 128.138.141.172  2 u  700 1024  377   99.224   -1.410   0.723
++a03.alphasrv.ne 192.53.103.108   2 u  458 1024  377    5.584    0.621   0.340
+-ntp.wdc1.us.lea 209.51.161.238   2 u  786 1024  377  103.795    9.398   5.587
+*muenchen.klaus- 131.211.8.244    2 u 1029 1024  377    7.557   -0.056   0.377
+ip-172-31-25-138.eu-central-1.compute.internal
      remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
-+ns3.customer-re 192.53.103.104   2 u   31  128  377   26.512   -3.779   6.720
-+www.mistersixt. 78.47.234.59     3 u   34  128  377    5.689  -11.491  10.143
-*trillian.jollyb 131.188.3.222    2 u   87  128  377    4.356    3.572  13.257
-+213.95.200.109  129.69.1.153     2 u   40  128  377    4.454  -12.298   9.035
-server04
++ns3.customer-re 192.53.103.108   2 u  435 1024  377   26.537    1.382   0.465
+-www.mistersixt. 122.208.208.165  3 u  898 1024  377    6.174    2.234   1.588
+*trillian.jollyb 131.188.3.222    2 u  403 1024  377    4.343   -0.053   0.746
++213.95.200.109  131.188.3.221    2 u  344 1024  377    4.617    0.431   0.244
+ip-172-31-25-139.eu-central-1.compute.internal
      remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
-*x.ns.gin.ntt.ne 249.224.99.213   2 u   41   64  377    0.831   -3.787   4.959
-+chl.la          127.67.113.92    2 u   44   64  377  167.934   -6.792   6.680
--uhrwerk.wertarb 131.188.3.222    2 u   30   64  377    5.798    2.767  13.471
-+panel1.web2.clu 37.120.191.245   3 u   41   64  377   11.796   -5.305  10.735
-server05
++x.ns.gin.ntt.ne 249.224.99.213   2 u  949 1024  377    0.799   -0.589   1.376
++chl.la          128.138.141.172  2 u  481 1024  377  168.060   -3.540   5.022
+*uhrwerk.wertarb 131.188.3.222    2 u  705 1024  377    5.815   -0.100   0.218
+-panel1.web2.clu 37.120.191.245   3 u  780 1024  377   11.750   -4.227   0.295
+ip-172-31-25-140.eu-central-1.compute.internal
      remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
--re.uni-paderbor .DCF.            1 u   35   64  377   14.693   -6.842   5.600
-+repos.lax-noc.c 127.67.113.92    2 u   47   64  377  148.148   -0.192   4.141
-*stratum2-4.NTP. 129.70.130.70    2 u   43  128  377   15.607   -0.228   2.694
-+213.95.200.109  129.69.1.153     2 u   41   64  377    4.400   -5.025   3.528
+*re.uni-paderbor .DCF.            1 u  477 1024  377   14.663   -1.115   1.772
++repos.lax-noc.c 128.138.140.44   2 u  714 1024  377  144.601   -0.743   0.516
+-stratum2-4.NTP. 129.70.130.71    2 u  256 1024  377   15.843    4.473   0.251
++213.95.200.109  131.188.3.221    2 u  600 1024  377    4.290    0.815   0.602
 
 ## FIREWALL SERVICE
 //--- service iptables status
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 iptables: Firewall is not running.
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 iptables: Firewall is not running.
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 iptables: Firewall is not running.
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 iptables: Firewall is not running.
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 iptables: Firewall is not running.
 
 //--- chkconfig --list iptables
-server01
-iptables       	0:desactivado	1:desactivado	2:desactivado	3:desactivado	4:desactivado	5:desactivado	6:desactivado
-server02
-iptables       	0:desactivado	1:desactivado	2:desactivado	3:desactivado	4:desactivado	5:desactivado	6:desactivado
-server03
-iptables       	0:desactivado	1:desactivado	2:desactivado	3:desactivado	4:desactivado	5:desactivado	6:desactivado
-server04
-iptables       	0:desactivado	1:desactivado	2:desactivado	3:desactivado	4:desactivado	5:desactivado	6:desactivado
-server05
-iptables       	0:desactivado	1:desactivado	2:desactivado	3:desactivado	4:desactivado	5:desactivado	6:desactivado
+ip-172-31-25-141.eu-central-1.compute.internal
+iptables            0:desactivado  1:desactivado  2:desactivado  3:desactivado  4:desactivado  5:desactivado  6:desactivado
+ip-172-31-25-137.eu-central-1.compute.internal
+iptables            0:desactivado  1:desactivado  2:desactivado  3:desactivado  4:desactivado  5:desactivado  6:desactivado
+ip-172-31-25-138.eu-central-1.compute.internal
+iptables            0:desactivado  1:desactivado  2:desactivado  3:desactivado  4:desactivado  5:desactivado  6:desactivado
+ip-172-31-25-139.eu-central-1.compute.internal
+iptables            0:desactivado  1:desactivado  2:desactivado  3:desactivado  4:desactivado  5:desactivado  6:desactivado
+ip-172-31-25-140.eu-central-1.compute.internal
+iptables            0:desactivado  1:desactivado  2:desactivado  3:desactivado  4:desactivado  5:desactivado  6:desactivado
 
 //--- service ip6tables status
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 Table: filter
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination
@@ -530,7 +569,7 @@ num  target     prot opt source               destination
 Chain OUTPUT (policy ACCEPT)
 num  target     prot opt source               destination
 
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 Table: filter
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination
@@ -548,7 +587,7 @@ num  target     prot opt source               destination
 Chain OUTPUT (policy ACCEPT)
 num  target     prot opt source               destination
 
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 Table: filter
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination
@@ -566,7 +605,7 @@ num  target     prot opt source               destination
 Chain OUTPUT (policy ACCEPT)
 num  target     prot opt source               destination
 
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 Table: filter
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination
@@ -584,7 +623,7 @@ num  target     prot opt source               destination
 Chain OUTPUT (policy ACCEPT)
 num  target     prot opt source               destination
 
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 Table: filter
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination
@@ -604,125 +643,125 @@ num  target     prot opt source               destination
 
 
 //--- chkconfig --list ip6tables
-server01
-ip6tables      	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server02
-ip6tables      	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server03
-ip6tables      	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server04
-ip6tables      	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
-server05
-ip6tables      	0:desactivado	1:desactivado	2:activo	3:activo	4:activo	5:activo	6:desactivado
+ip-172-31-25-141.eu-central-1.compute.internal
+ip6tables           0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-137.eu-central-1.compute.internal
+ip6tables           0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-138.eu-central-1.compute.internal
+ip6tables           0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-139.eu-central-1.compute.internal
+ip6tables           0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-140.eu-central-1.compute.internal
+ip6tables           0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
 
 ### NSSWITCH & HOST.CONF
 //--- egrep "^hosts:" /etc/nsswitch.conf
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 hosts:      files dns
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 hosts:      files dns
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 hosts:      files dns
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 hosts:      files dns
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 hosts:      files dns
 
 //--- cat /etc/host.conf
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 multi on
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 multi on
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 multi on
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 multi on
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 multi on
 
 //--- getent hosts
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
 127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
-172.31.25.141   server01
-172.31.25.137   server02
-172.31.25.138   server03
-172.31.25.139   server04
-172.31.25.140   server05
-server02
+172.31.25.141   ip-172-31-25-141.eu-central-1.compute.internal server01 master01
+172.31.25.137   ip-172-31-25-137.eu-central-1.compute.internal server02 master02
+172.31.25.138   ip-172-31-25-138.eu-central-1.compute.internal server03 worker01
+172.31.25.139   ip-172-31-25-139.eu-central-1.compute.internal server04 worker02
+172.31.25.140   ip-172-31-25-140.eu-central-1.compute.internal server05 worker03
+ip-172-31-25-137.eu-central-1.compute.internal
 127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
 127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
-172.31.25.141   server01
-172.31.25.137   server02
-172.31.25.138   server03
-172.31.25.139   server04
-172.31.25.140   server05
-server03
+172.31.25.141   ip-172-31-25-141.eu-central-1.compute.internal server01 master01
+172.31.25.137   ip-172-31-25-137.eu-central-1.compute.internal server02 master02
+172.31.25.138   ip-172-31-25-138.eu-central-1.compute.internal server03 worker01
+172.31.25.139   ip-172-31-25-139.eu-central-1.compute.internal server04 worker02
+172.31.25.140   ip-172-31-25-140.eu-central-1.compute.internal server05 worker03
+ip-172-31-25-138.eu-central-1.compute.internal
 127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
 127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
-172.31.25.141   server01
-172.31.25.137   server02
-172.31.25.138   server03
-172.31.25.139   server04
-172.31.25.140   server05
-server04
+172.31.25.141   ip-172-31-25-141.eu-central-1.compute.internal server01 master01
+172.31.25.137   ip-172-31-25-137.eu-central-1.compute.internal server02 master02
+172.31.25.138   ip-172-31-25-138.eu-central-1.compute.internal server03 worker01
+172.31.25.139   ip-172-31-25-139.eu-central-1.compute.internal server04 worker02
+172.31.25.140   ip-172-31-25-140.eu-central-1.compute.internal server05 worker03
+ip-172-31-25-139.eu-central-1.compute.internal
 127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
 127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
-172.31.25.141   server01
-172.31.25.137   server02
-172.31.25.138   server03
-172.31.25.139   server04
-172.31.25.140   server05
-server05
+172.31.25.141   ip-172-31-25-141.eu-central-1.compute.internal server01 master01
+172.31.25.137   ip-172-31-25-137.eu-central-1.compute.internal server02 master02
+172.31.25.138   ip-172-31-25-138.eu-central-1.compute.internal server03 worker01
+172.31.25.139   ip-172-31-25-139.eu-central-1.compute.internal server04 worker02
+172.31.25.140   ip-172-31-25-140.eu-central-1.compute.internal server05 worker03
+ip-172-31-25-140.eu-central-1.compute.internal
 127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
 127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
-172.31.25.141   server01
-172.31.25.137   server02
-172.31.25.138   server03
-172.31.25.139   server04
-172.31.25.140   server05
+172.31.25.141   ip-172-31-25-141.eu-central-1.compute.internal server01 master01
+172.31.25.137   ip-172-31-25-137.eu-central-1.compute.internal server02 master02
+172.31.25.138   ip-172-31-25-138.eu-central-1.compute.internal server03 worker01
+172.31.25.139   ip-172-31-25-139.eu-central-1.compute.internal server04 worker02
+172.31.25.140   ip-172-31-25-140.eu-central-1.compute.internal server05 worker03
 
 ### DNS CACHE
 //--- service nscd status
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 nscd (pid 2373) is running...
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 nscd (pid 23325) is running...
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 nscd (pid 2376) is running...
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 nscd (pid 2332) is running...
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 nscd (pid 2349) is running...
 
-//--- chkconfig --list ncsd
-server01
-error al leer la información del servicio ncsd: No existe el fichero o el directorio
-server02
-error al leer la información del servicio ncsd: No existe el fichero o el directorio
-server03
-error al leer la información del servicio ncsd: No existe el fichero o el directorio
-server04
-error al leer la información del servicio ncsd: No existe el fichero o el directorio
-server05
-error al leer la información del servicio ncsd: No existe el fichero o el directorio
+//--- chkconfig --list nscd
+ip-172-31-25-141.eu-central-1.compute.internal
+nscd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-137.eu-central-1.compute.internal
+nscd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-138.eu-central-1.compute.internal
+nscd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-139.eu-central-1.compute.internal
+nscd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
+ip-172-31-25-140.eu-central-1.compute.internal
+nscd                0:desactivado  1:desactivado  2:activo  3:activo  4:activo  5:activo  6:desactivado
 
 ### SWAPPINESS
 //--- cat /proc/sys/vm/swappiness
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 1
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 1
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 1
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 1
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 1
 
 ### IPV4 TCP
 //--- sysctl -a | egrep "net.ipv4.tcp_"
-server01
+ip-172-31-25-141.eu-central-1.compute.internal
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_sack = 1
@@ -748,9 +787,9 @@ net.ipv4.tcp_fack = 1
 net.ipv4.tcp_reordering = 3
 net.ipv4.tcp_ecn = 2
 net.ipv4.tcp_dsack = 1
-net.ipv4.tcp_mem = 1431168	1908224	2862336
-net.ipv4.tcp_wmem = 4096	16384	4194304
-net.ipv4.tcp_rmem = 4096	87380	4194304
+net.ipv4.tcp_mem = 1431168    1908224   2862336
+net.ipv4.tcp_wmem = 4096 16384     4194304
+net.ipv4.tcp_rmem = 4096 87380     4194304
 net.ipv4.tcp_app_win = 31
 net.ipv4.tcp_adv_win_scale = 2
 net.ipv4.tcp_tw_reuse = 0
@@ -775,7 +814,7 @@ net.ipv4.tcp_max_ssthresh = 0
 net.ipv4.tcp_thin_linear_timeouts = 0
 net.ipv4.tcp_thin_dupack = 0
 net.ipv4.tcp_min_tso_segs = 2
-server02
+ip-172-31-25-137.eu-central-1.compute.internal
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_sack = 1
@@ -801,9 +840,9 @@ net.ipv4.tcp_fack = 1
 net.ipv4.tcp_reordering = 3
 net.ipv4.tcp_ecn = 2
 net.ipv4.tcp_dsack = 1
-net.ipv4.tcp_mem = 1431168	1908224	2862336
-net.ipv4.tcp_wmem = 4096	16384	4194304
-net.ipv4.tcp_rmem = 4096	87380	4194304
+net.ipv4.tcp_mem = 1431168    1908224   2862336
+net.ipv4.tcp_wmem = 4096 16384     4194304
+net.ipv4.tcp_rmem = 4096 87380     4194304
 net.ipv4.tcp_app_win = 31
 net.ipv4.tcp_adv_win_scale = 2
 net.ipv4.tcp_tw_reuse = 0
@@ -828,7 +867,7 @@ net.ipv4.tcp_max_ssthresh = 0
 net.ipv4.tcp_thin_linear_timeouts = 0
 net.ipv4.tcp_thin_dupack = 0
 net.ipv4.tcp_min_tso_segs = 2
-server03
+ip-172-31-25-138.eu-central-1.compute.internal
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_sack = 1
@@ -854,9 +893,9 @@ net.ipv4.tcp_fack = 1
 net.ipv4.tcp_reordering = 3
 net.ipv4.tcp_ecn = 2
 net.ipv4.tcp_dsack = 1
-net.ipv4.tcp_mem = 1431168	1908224	2862336
-net.ipv4.tcp_wmem = 4096	16384	4194304
-net.ipv4.tcp_rmem = 4096	87380	4194304
+net.ipv4.tcp_mem = 1431168    1908224   2862336
+net.ipv4.tcp_wmem = 4096 16384     4194304
+net.ipv4.tcp_rmem = 4096 87380     4194304
 net.ipv4.tcp_app_win = 31
 net.ipv4.tcp_adv_win_scale = 2
 net.ipv4.tcp_tw_reuse = 0
@@ -881,7 +920,7 @@ net.ipv4.tcp_max_ssthresh = 0
 net.ipv4.tcp_thin_linear_timeouts = 0
 net.ipv4.tcp_thin_dupack = 0
 net.ipv4.tcp_min_tso_segs = 2
-server04
+ip-172-31-25-139.eu-central-1.compute.internal
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_sack = 1
@@ -907,9 +946,9 @@ net.ipv4.tcp_fack = 1
 net.ipv4.tcp_reordering = 3
 net.ipv4.tcp_ecn = 2
 net.ipv4.tcp_dsack = 1
-net.ipv4.tcp_mem = 1431168	1908224	2862336
-net.ipv4.tcp_wmem = 4096	16384	4194304
-net.ipv4.tcp_rmem = 4096	87380	4194304
+net.ipv4.tcp_mem = 1431168    1908224   2862336
+net.ipv4.tcp_wmem = 4096 16384     4194304
+net.ipv4.tcp_rmem = 4096 87380     4194304
 net.ipv4.tcp_app_win = 31
 net.ipv4.tcp_adv_win_scale = 2
 net.ipv4.tcp_tw_reuse = 0
@@ -934,7 +973,7 @@ net.ipv4.tcp_max_ssthresh = 0
 net.ipv4.tcp_thin_linear_timeouts = 0
 net.ipv4.tcp_thin_dupack = 0
 net.ipv4.tcp_min_tso_segs = 2
-server05
+ip-172-31-25-140.eu-central-1.compute.internal
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_sack = 1
@@ -960,9 +999,9 @@ net.ipv4.tcp_fack = 1
 net.ipv4.tcp_reordering = 3
 net.ipv4.tcp_ecn = 2
 net.ipv4.tcp_dsack = 1
-net.ipv4.tcp_mem = 1431168	1908224	2862336
-net.ipv4.tcp_wmem = 4096	16384	4194304
-net.ipv4.tcp_rmem = 4096	87380	4194304
+net.ipv4.tcp_mem = 1431168    1908224   2862336
+net.ipv4.tcp_wmem = 4096 16384     4194304
+net.ipv4.tcp_rmem = 4096 87380     4194304
 net.ipv4.tcp_app_win = 31
 net.ipv4.tcp_adv_win_scale = 2
 net.ipv4.tcp_tw_reuse = 0
