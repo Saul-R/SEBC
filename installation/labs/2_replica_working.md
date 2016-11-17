@@ -19,6 +19,8 @@ sudo yum install mysql mysql-server -y
 ## On slave:
 ```
 sudo yum install mysql mysql-server -y
+```
+
 
 ## Other nodes:
 ```
