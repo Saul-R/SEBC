@@ -8,42 +8,42 @@ sudo bash -c "echo 'vm.swappiness = 1' >> /etc/sysctl.conf" # Make permanent cha
 
 # Display the mount attributes of all volumes
 ```
-echo -e "o\nn\np\n1\n\n\n\nw" | sudo fdisk /dev/xvdb 
-echo -e "o\nn\np\n1\n\n\n\nw" | sudo fdisk /dev/xvdc 
-echo -e "o\nn\np\n1\n\n+15GB\n\nw" |sudo fdisk /dev/xvdf
-echo -e "o\nn\np\n2\n\n\n\nw" |sudo fdisk /dev/xvdf
-sudo fdisk /dev/xvdb #u/n/p/1/w
-sudo fdisk /dev/xvdc #u/n/p/1/w
-sudo fdisk /dev/xvdf #u/n/p/1/w
-sudo mkfs.ext4 /dev/xvdb1
-sudo mkfs.ext4 /dev/xvdc1
-sudo mkfs.ext4 /dev/xvdf1
-sudo partprobe
-sudo mkdir /data1 /data2
+
 ```
 
 # Display mount points
 ```
-[ec2-user@ip-172-31-25-137 ~]$ sudo mount
-/dev/xvda1 on / type ext4 (rw)
-proc on /proc type proc (rw)
-sysfs on /sys type sysfs (rw)
-devpts on /dev/pts type devpts (rw,gid=5,mode=620)
-tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
-none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
-/dev/xvdb1 on /data1 type ext4 (rw)
-/dev/xvdc1 on /data2 type ext4 (rw)
-[ec2-user@ip-172-31-25-137 ~]$
+[root@ip-172-31-25-137 lib]# cat /etc/fstab
+
+#
+# /etc/fstab
+# Created by anaconda on Tue Jul 14 09:33:08 2015
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+UUID=0e6b1614-7bbe-4d6e-bc78-a5556a123ba8 /                       ext4    defaults        1 1
+UUID=5b32c812-1873-4878-8328-c268ec4eef8e /opt/                      ext4    defaults        1 1
+UUID=4480176d-5dd7-486f-abdb-f2ab7be0af54 /data1                       ext4    defaults        1 1
+/dev/xvdf1                                /var/log                   ext4    defaults        1 1
+/dev/xvdf2                                /var/lib                    ext4    defaults        1 1
+tmpfs                   /dev/shm                tmpfs   defaults        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults        0 0
+proc                    /proc                   proc    defaults        0 0
 ```
 
 # Display disks usage
 ```
-#[ec2-user@ip-172-31-25-137 ~]$ df -h
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  2,0G  7,3G  21% /
-tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb1       40G   48M   38G   1% /data1
-/dev/xvdc1       40G   48M   38G   1% /data2
+[root@ip-172-31-25-137 lib]# df
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/xvda1      10189092 6063480   3601428  63% /
+tmpfs            7648808       0   7648808   0% /dev/shm
+/dev/xvdc1      41153824  881628  38175048   3% /data1
+/dev/xvdb1      41153824 5037196  34019480  13% /opt
+cm_processes     7648808   66004   7582804   1% /var/run/cloudera-scm-agent/process
+/dev/xvdf1      14297856  209848  13355044   2% /var/log
+/dev/xvdf2      16401076 5096140  10465140  33% /var/lib
 ```
 
 # Disable transparent hugepages
