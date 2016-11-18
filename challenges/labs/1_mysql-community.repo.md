@@ -16,13 +16,6 @@ enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 
-# Enable to use MySQL 5.5
-[mysql55-community]
-name=MySQL 5.5 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.5-community/el/6/$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 
 # Enable to use MySQL 5.6
 [mysql56-community]
@@ -34,10 +27,34 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 ```
 
 
-# On every node:
+# Mysql Version:
 ```
-wget http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz
-sudo tar xzvf mysql-connector-java-5.1.40.tar.gz
-sudo cp mysql-connector-java-5.1.40-bin.jar mysql-connector-java.jar 
+[ec2-user@ip-172-31-0-115 ~]$ mysql --version
+mysql  Ver 14.14 Distrib 5.6.34, for Linux (x86_64) using  EditLine wrapper
 ```
+
+# Databases
+```
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| hue                |
+| metastore          |
+| mysql              |
+| oozie              |
+| performance_schema |
+| rman               |
+| sentry             |
++--------------------+
+8 rows in set (0,00 sec)
+```
+
+
+
+SHOW GRANTS FOR 'hue'@'localhost'
+
+
+
 

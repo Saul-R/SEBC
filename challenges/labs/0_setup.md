@@ -80,5 +80,3 @@ democratic:x:2801:saxony
 social:x:2802:bavaria
 
 ```
-sudo mount -a
-sudo umount /mnt/
