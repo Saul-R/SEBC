@@ -11,43 +11,43 @@
 ```
 [ec2-user@ip-172-31-0-113 /]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  1,7G  7,6G  19% /
+/dev/xvda1      9,8G  2,0G  7,4G  21% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb        37G  177M   35G   1% /mnt
+/dev/xvdb        37G  177M   35G   1% /opt
 /dev/xvdd1       14G   36M   13G   1% /var/log
-/dev/xvdd2       16G   45M   15G   1% /var/lib
+/dev/xvdd2       16G   46M   15G   1% /var/lib
 
-[ec2-user@ip-172-31-0-115 ~]$ df -h
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  1,7G  7,6G  19% /
-tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb        37G  177M   35G   1% /mnt
-/dev/xvdd1       14G   36M   13G   1% /var/log
-/dev/xvdd2       16G   45M   15G   1% /var/lib
-
-[ec2-user@ip-172-31-0-114 mnt]$ df -h
+[ec2-user@ip-172-31-0-114 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/xvda1      9,8G  2,0G  7,4G  21% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb        37G  177M   35G   1% /mnt
 /dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdb        37G  177M   35G   1% /opt
+/dev/xvdd2       16G   46M   15G   1% /var/lib
+
+[ec2-user@ip-172-31-0-115 ~]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1      9,8G  2,0G  7,4G  21% /
+tmpfs           7,3G     0  7,3G   0% /dev/shm
+/dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdb        37G  177M   35G   1% /opt
 /dev/xvdd2       16G   45M   15G   1% /var/lib
 
 [ec2-user@ip-172-31-0-116 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/xvda1      9,8G  1,7G  7,6G  19% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb        37G  177M   35G   1% /mnt
 /dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdb        37G  177M   35G   1% /opt
 /dev/xvdd2       16G   45M   15G   1% /var/lib
 
 [ec2-user@ip-172-31-0-117 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      9,8G  1,7G  7,6G  19% /
+/dev/xvda1      9,8G  2,0G  7,4G  21% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb        37G  177M   35G   1% /mnt
 /dev/xvdd1       14G   36M   13G   1% /var/log
-/dev/xvdd2       16G   45M   15G   1% /var/lib
+/dev/xvdb        37G  177M   35G   1% /opt
+/dev/xvdd2       16G   46M   15G   1% /var/lib
 ```
 
 
@@ -80,3 +80,5 @@ democratic:x:2801:saxony
 social:x:2802:bavaria
 
 ```
+sudo mount -a
+sudo umount /mnt/
