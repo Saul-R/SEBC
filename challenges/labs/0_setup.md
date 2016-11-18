@@ -2,83 +2,71 @@
 - Region:
 ```
 - region: Frankfurt: eu-central-1b
-- AIM: ami-97698cf8
+- AIM: ami-8e96ac93
 - OS: Red Hat Enterprise Linux Server release 6.7 (Santiago)
 ```
 
 
-
 - Disk space:
 ```
-[ec2-user@ip-172-31-9-239 ~]$ df -h
+[ec2-user@ip-172-31-0-113 /]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      5,8G  1,7G  3,9G  31% /
+/dev/xvda1      9,8G  1,7G  7,6G  19% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdc        37G  177M   35G   1% /mnt
-/dev/xvdb1       14G   36M   13G   1% /var/lib
-/dev/xvdb2       16G   45M   15G   1% /var/log
-/dev/xvdc        37G  177M   35G   1% /data1
-/dev/xvdd        37G  177M   35G   1% /data2
+/dev/xvdb        37G  177M   35G   1% /mnt
+/dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdd2       16G   45M   15G   1% /var/lib
 
-[ec2-user@ip-172-31-9-240 /]$ df -h
+[ec2-user@ip-172-31-0-115 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      5,8G  1,7G  3,9G  31% /
+/dev/xvda1      9,8G  1,7G  7,6G  19% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdb1       14G   36M   13G   1% /var/lib
-/dev/xvdb2       16G   45M   15G   1% /var/log
-/dev/xvdc        37G  177M   35G   1% /data1
-/dev/xvdd        37G  177M   35G   1% /data2
+/dev/xvdb        37G  177M   35G   1% /mnt
+/dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdd2       16G   45M   15G   1% /var/lib
 
-[ec2-user@ip-172-31-9-241 var]$ df -h
+[ec2-user@ip-172-31-0-114 mnt]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      5,8G  1,7G  3,9G  31% /
+/dev/xvda1      9,8G  2,0G  7,4G  21% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdc        37G  177M   35G   1% /mnt
-/dev/xvdb1       14G   36M   13G   1% /var/lib
-/dev/xvdb2       16G   45M   15G   1% /var/log
-/dev/xvdc        37G  177M   35G   1% /data1
-/dev/xvdd        37G  177M   35G   1% /data2
+/dev/xvdb        37G  177M   35G   1% /mnt
+/dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdd2       16G   45M   15G   1% /var/lib
 
-[ec2-user@ip-172-31-9-243 ~]$ df -h
+[ec2-user@ip-172-31-0-116 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      5,8G  1,7G  3,9G  31% /
+/dev/xvda1      9,8G  1,7G  7,6G  19% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdc        37G  177M   35G   1% /mnt
-/dev/xvdb1       14G   36M   13G   1% /var/lib
-/dev/xvdb2       16G   45M   15G   1% /var/log
-/dev/xvdc        37G  177M   35G   1% /data1
-/dev/xvdd        37G  177M   35G   1% /data2
+/dev/xvdb        37G  177M   35G   1% /mnt
+/dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdd2       16G   45M   15G   1% /var/lib
 
-[ec2-user@ip-172-31-9-242 ~]$ df -h
+[ec2-user@ip-172-31-0-117 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1      5,8G  1,7G  3,9G  31% /
+/dev/xvda1      9,8G  1,7G  7,6G  19% /
 tmpfs           7,3G     0  7,3G   0% /dev/shm
-/dev/xvdc        37G  177M   35G   1% /mnt
-/dev/xvdb1       14G   36M   13G   1% /var/lib
-/dev/xvdb2       16G   45M   15G   1% /var/log
-/dev/xvdc        37G  177M   35G   1% /data1
-/dev/xvdd        37G  177M   35G   1% /data2
+/dev/xvdb        37G  177M   35G   1% /mnt
+/dev/xvdd1       14G   36M   13G   1% /var/log
+/dev/xvdd2       16G   45M   15G   1% /var/lib
 ```
 
 
 
 - List repositories:
 ```
-[ec2-user@ip-172-31-9-241 var]$ yum repolist enabled
+[ec2-user@ip-172-31-0-113 var]$ sudo yum repolist
 Complementos cargados:amazon-id, rhui-lb, security
-Repo rhui-REGION-client-config-server-6 forced skip_if_unavailable=True due to: /etc/pki/rhui/cdn.redhat.com-chain.crt
-Repo rhui-REGION-client-config-server-6 forced skip_if_unavailable=True due to: /etc/pki/rhui/product/rhui-client-config-server-6.crt
-Repo rhui-REGION-client-config-server-6 forced skip_if_unavailable=True due to: /etc/pki/rhui/rhui-client-config-server-6.key
-Repo rhui-REGION-rhel-server-releases forced skip_if_unavailable=True due to: /etc/pki/rhui/cdn.redhat.com-chain.crt
-Repo rhui-REGION-rhel-server-releases forced skip_if_unavailable=True due to: /etc/pki/rhui/product/content-rhel6.crt
-Repo rhui-REGION-rhel-server-releases forced skip_if_unavailable=True due to: /etc/pki/rhui/content-rhel6.key
-Repo rhui-REGION-rhel-server-rh-common forced skip_if_unavailable=True due to: /etc/pki/rhui/cdn.redhat.com-chain.crt
-Repo rhui-REGION-rhel-server-rh-common forced skip_if_unavailable=True due to: /etc/pki/rhui/product/content-rhel6.crt
-Repo rhui-REGION-rhel-server-rh-common forced skip_if_unavailable=True due to: /etc/pki/rhui/content-rhel6.key
-Could not contact CDS load balancer rhui2-cds01.eu-central-1.aws.ce.redhat.com, trying others.
-
-
-Could not contact any CDS load balancers: rhui2-cds01.eu-central-1.aws.ce.redhat.com, rhui2-cds02.eu-central-1.aws.ce.redhat.com.
+rhui-REGION-client-config-server-6                                                                                                                        | 2.9 kB     00:00
+rhui-REGION-client-config-server-6/primary_db                                                                                                             | 4.0 kB     00:00
+rhui-REGION-rhel-server-releases                                                                                                                          | 3.5 kB     00:00
+rhui-REGION-rhel-server-releases/primary_db                                                                                                               |  51 MB     00:00
+rhui-REGION-rhel-server-rh-common                                                                                                                         | 3.8 kB     00:00
+rhui-REGION-rhel-server-rh-common/primary_db                                                                                                              |  65 kB     00:00
+id del repositorio                                                     nombre del repositorio                                                                              estado
+rhui-REGION-client-config-server-6                                     Red Hat Update Infrastructure 2.0 Client Configuration Server 6                                          3
+rhui-REGION-rhel-server-releases                                       Red Hat Enterprise Linux Server 6 (RPMs)                                                            18.369
+rhui-REGION-rhel-server-rh-common                                      Red Hat Enterprise Linux Server 6 RH Common (RPMs)                                                     129
+repolist: 18.501
 ```
 
 - Create users:
